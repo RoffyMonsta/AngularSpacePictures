@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "SpacePictures"
+    }
+  },
+  "defaultProject": "SpacePictures",
+  "cli": {
+    "analytics": "6455f5c3-ca91-4e48-942e-5129945c312b"
+  }
 }
