@@ -12,32 +12,34 @@ import {CameraFilterPipe} from './pipes/camera-filter.pipe';
 export class AppComponent implements OnInit {
   
   title = 'SpacePictures';
-  private apiKey: string = 'w7yIPn3E89qvXvcmqi1s1JpcHFZMIjbjnhzxRenc';
+  
   url: string = null;
   items = [];
   roverChose: string;
   cameraChose: string;
+  solChose: number;
   cameras: Camera[];
   rovers: Rover[];
   sol: number = null;
+  letSearch: boolean = false;
 
 
   constructor(private apiGet: GetPhotosService) {  
   }
   ngOnInit(){
-    this.url = 'https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key='+this.apiKey;
-    //TODO get url to service
-    this.apiGet.getPhotos(this.url)
+   
+    if(this.letSearch){
+    this.apiGet.getPhotos(this.rovers[this.roverChose]['searchName'], this.cameras[this.cameraChose]['searchName'], this.solChose.toString())
     .subscribe(data=>{
       for( let key in data){
         if(data.hasOwnProperty(key))
         this.items.push(data[key]);
         this.items = this.items[0];
       }
-  
+      this.letSearch = false
       console.log(this.items);
     });
-
+  };
     this.rovers = [
       {id:'1', searchName: 'curiosity', fullName: 'Curiousity' },
       {id:'2', searchName: 'opportunity', fullName: 'Opportunity' },
@@ -56,5 +58,10 @@ export class AppComponent implements OnInit {
     ];
       console.log(this.roverChose);
       console.log(this.url);
+}
+
+startSearch(){
+  this.letSearch = true;
+  this.ngOnInit();
 }
 }
