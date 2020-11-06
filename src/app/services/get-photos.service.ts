@@ -17,12 +17,11 @@ export class GetPhotosService {
 getPhotos(rover:string, camera: string, sol: number){
 if(camera == 'all')this.cameraUrl = '&';
 else this.cameraUrl = '&camera='+camera;
-if(sol == 0 || sol == null)this.solUrl = '&';
-else this.solUrl = '&sol='+sol.toString();
+this.solUrl = '&sol='+sol.toString();
 
 
     this.fullUrl = this.url+rover+'/photos?'+this.solUrl+this.cameraUrl+'&api_key='+this.apiKey;
-    console.log(this.fullUrl);
+    console.log('GET FROM',this.fullUrl);
     return this.http.get(this.fullUrl);
 }
 }

@@ -1,24 +1,60 @@
-<header>Header</header>
+<p>
+    <mat-toolbar class="menuCard">
+        <span>Space Pictures</span>
+    </mat-toolbar>
+</p>
+
 <div class="selects">
-    <div class="selectMenu">
-        <select [(ngModel)]="roverChose">
-        <option *ngFor="let rover of rovers" [value] = "rover.id">{{rover.fullName}}</option>
-      </select>
-        <select [(ngModel)]="cameraChose">
-          <option *ngFor="let camera of cameras | cameraFilter:roverChose" [value] = "camera.id">{{camera.fullName}}</option>
-        </select>
-        <input type="number" [(ngModel)]="solChose" [value]="solChose">
+    <mat-form-field appearance="fill">
+        <mat-label>Choose rover</mat-label>
+        <mat-select [(ngModel)]="roverChose" name="fieldName" ngDefaultControl style="margin: 2%;">
+            <mat-option *ngFor=" let rover of rovers " [value]="rover.id ">{{rover.fullName}}</mat-option>
+        </mat-select>
+    </mat-form-field>
 
+    <mat-form-field appearance="fill">
+        <mat-label>Choose camera</mat-label>
+        <mat-select [(ngModel)]="cameraChose " name="fieldName " ngDefaultControl>
+            <mat-option *ngFor="let camera of cameras | cameraFilter:roverChose " [value]="camera.id ">{{camera.fullName}}</mat-option>
+        </mat-select>
 
+    </mat-form-field>
 
-        <button (click)="startSearch() ">Dive into space!</button>
-    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose sol number</mat-label>
+        <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl maxlength="1000">
+    </mat-form-field>
 </div>
-<div *ngIf="items.length!==0" class="found">Found {{items.length}} pictures!</div>
-<button *ngIf="items.length>3" (click)=" more=! more ">{{ more ? 'Show less':'Show more' }}</button>
-<div *ngIf="items.length===0 && noImages ">No images sorry!</div>
-<div *ngFor="let item of items | slice: 0 :(more ? undefined : 3) ">
-    <div class="element ">
-        <img src="{{item.img_src}} " style="width: 20%; " alt=" ">
-        <span>{{item.camera.full_name}}, {{item.earth_date}}</span></div>
+<div class="diveInto"><button mat-stroked-button (click)="startSearch() " color="primary">Dive into space!</button></div>
+<br>
+<mat-card *ngIf=" items.length!==0 " class="menuCard">
+    <mat-card-content>
+        <p>
+            Found {{items.length}} pictures! Don't forget to use pagination
+        </p>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf="items.length===0 && noImages " class="menuCard">
+    <mat-card-content>
+        <p>
+            No images sorry!
+        </p>
+    </mat-card-content>
+</mat-card>
+<mat-paginator (page)="onPageChange($event) " [length]="items.length " [pageSize]="3 " [pageSizeOptions]="[3, 6, 12, 15] ">
+</mat-paginator>
+<div class="content" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="space-around center" grid>
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of currentItemsToShow, let i=index; ">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>{{item.camera.full_name}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image src="{{item.img_src}} " alt="{{item.earth_date}} ">
+            <mat-card-content>
+                <p>
+                    {{item.earth_date}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

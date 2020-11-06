@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   cameras: Camera[];
   rovers: Rover[];
   sol: number = null;
+  currentItemsToShow= [];
   letSearch: boolean = false;
   noImages: boolean = false;
   constructor(private apiGet: GetPhotosService) {  
@@ -43,14 +44,17 @@ export class AppComponent implements OnInit {
     ];
   }
   ngOnInit(){
-   console.log(this.cameras[1]);
+    
     this.noImages = false;
-   console.log( this.noImages)
+
+
     if(this.letSearch){
-      this.items = [];
-    if(this.solChose > 1000 || this.solChose <=0)this.solChose = 1000;
-      console.log('search!');
+     
       
+      this.items = [];
+    if(this.solChose > 1000 || this.solChose <=0 || this.solChose == null)this.solChose = 1000;
+    if(this.roverChose !== undefined || this.cameraChose !== undefined){
+    
     this.apiGet.getPhotos(this.rovers[this.roverChose]['searchName'], this.cameras[this.cameraChose]['searchName'], this.solChose)
     .subscribe(data=>{
 
@@ -59,11 +63,12 @@ export class AppComponent implements OnInit {
         if(data.hasOwnProperty(key))
         this.items.push(data[key]);
         this.items = this.items[0];
+        this.currentItemsToShow = this.items; 
       }
       if(this.items.length === 0)this.noImages = true;
       this.letSearch = false;
-      console.log(this.items);
     });
+  }else console.log('Input data lol');
   };
 
 }
@@ -71,5 +76,9 @@ export class AppComponent implements OnInit {
 startSearch(){
   this.letSearch = true;
   this.ngOnInit();
+}
+
+onPageChange($event) {
+  this.currentItemsToShow =  this.items.slice($event.pageIndex*$event.pageSize, $event.pageIndex*$event.pageSize + $event.pageSize);
 }
 }

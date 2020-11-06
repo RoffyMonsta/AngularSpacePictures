@@ -1,0 +1,50 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+}
+
+.selects {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+.diveInto {
+    display: flex;
+    justify-content: center;
+}
+
+.menuCard {
+    text-align: center;
+    background-color: #673ab7;
+    color: white;
+}
+
+.content {
+    padding: 16px;
+}
+
+.content mat-card {
+    background-color: #673ab7;
+    color: white;
+    margin-bottom: 16px;
+}
+
+@media(max-width:450px) {
+    .selects {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+    .diveInto {
+        margin-top: 50px;
+    }
+}
