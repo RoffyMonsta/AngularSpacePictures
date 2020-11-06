@@ -6,22 +6,12 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+User has to choose the Rover in select menu, then he can choose Camera depending on a rover type he chose. Then he can type in sol number. If value isn't typed it automatically becomes 1000 for results.
 
-## Build
+Then user clicks the button to Dive into space and pictures with earth date are loaded. There is a pagination where user can select items per page and switch between them. In my opinion, material paging is much more efficient that a Load more  button because it provides better UX.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+This app is tablet/mobile friendly. 
 
-## Running unit tests
+Check out demo [site](https://roffymonsta.github.io/SpacePictures)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
