@@ -7,14 +7,17 @@
         <select [(ngModel)]="cameraChose">
           <option *ngFor="let camera of cameras | cameraFilter:roverChose" [value] = "camera.id">{{camera.fullName}}</option>
         </select>
-        <input type="number" [(ngModel)]="solChose" [value]="solChose" min="0" max=" 1000 ">
-        <p>You chose this rover: {{roverChose}}, this camera: {{cameraChose}}, and this number {{solChose}}</p>
+        <input type="number" [(ngModel)]="solChose" [value]="solChose">
 
-        <button (click)="startSearch()"></button>
+
+
+        <button (click)="startSearch() ">Dive into space!</button>
     </div>
 </div>
-
-<div *ngFor="let item of items.slice(0,10) ">
+<div *ngIf="items.length!==0" class="found">Found {{items.length}} pictures!</div>
+<button *ngIf="items.length>3" (click)=" more=! more ">{{ more ? 'Show less':'Show more' }}</button>
+<div *ngIf="items.length===0 && noImages ">No images sorry!</div>
+<div *ngFor="let item of items | slice: 0 :(more ? undefined : 3) ">
     <div class="element ">
         <img src="{{item.img_src}} " style="width: 20%; " alt=" ">
         <span>{{item.camera.full_name}}, {{item.earth_date}}</span></div>
