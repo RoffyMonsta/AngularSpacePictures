@@ -25,7 +25,7 @@
         <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl min="0" max="1000" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
     </mat-form-field>
 </div>
-<div class=" diveInto "><button mat-stroked-button (click)="startSearch() " color="primary ">Dive into space!</button></div>
+<div class=" diveInto "><button mat-stroked-button (click)="startSearch() " color="#673ab7 ">Dive into space!</button></div>
 <br>
 <mat-card *ngIf=" items.length!==0 " class="menuCard ">
     <mat-card-content>
