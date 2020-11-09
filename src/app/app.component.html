@@ -22,7 +22,7 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Choose sol number</mat-label>
-        <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl maxlength="1000">
+        <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl min="0" max="1000" oninput="validity.valid||(value='');">
     </mat-form-field>
 </div>
 <div class="diveInto"><button mat-stroked-button (click)="startSearch() " color="primary">Dive into space!</button></div>
