@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
      
       
       this.items = [];
-    if(this.solChose > 1000 || this.solChose <=0 || this.solChose == null)this.solChose = 1000;
+    if(this.solChose > 1000 )this.solChose = 1000;
     if(this.roverChose !== undefined || this.cameraChose !== undefined){
     
     this.apiGet.getPhotos(this.rovers[this.roverChose]['searchName'], this.cameras[this.cameraChose]['searchName'], this.solChose)

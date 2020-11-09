@@ -22,19 +22,19 @@
 
     <mat-form-field appearance="fill">
         <mat-label>Choose sol number</mat-label>
-        <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl min="0" max="1000" oninput="validity.valid||(value='');">
+        <input type="number" matInput [(ngModel)]="solChose " [value]="solChose " name="fieldName " ngDefaultControl min="0" max="1000" onkeypress="return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57">
     </mat-form-field>
 </div>
-<div class="diveInto"><button mat-stroked-button (click)="startSearch() " color="primary">Dive into space!</button></div>
+<div class=" diveInto "><button mat-stroked-button (click)="startSearch() " color="primary ">Dive into space!</button></div>
 <br>
-<mat-card *ngIf=" items.length!==0 " class="menuCard">
+<mat-card *ngIf=" items.length!==0 " class="menuCard ">
     <mat-card-content>
         <p>
             Found {{items.length}} pictures! Don't forget to use pagination
         </p>
     </mat-card-content>
 </mat-card>
-<mat-card *ngIf="items.length===0 && noImages " class="menuCard">
+<mat-card *ngIf="items.length===0 && noImages " class="menuCard ">
     <mat-card-content>
         <p>
             No images sorry!
@@ -43,8 +43,8 @@
 </mat-card>
 <mat-paginator (page)="onPageChange($event) " [length]="items.length " [pageSize]="3 " [pageSizeOptions]="[3, 6, 12, 15] ">
 </mat-paginator>
-<div class="content" fxLayout="row wrap" fxLayoutGap="16px" fxLayoutAlign="space-around center" grid>
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of currentItemsToShow, let i=index; ">
+<div class="content " fxLayout="row wrap " fxLayoutGap="16px " fxLayoutAlign="space-around center " grid>
+    <div fxFlex="25% " fxFlex.xs="100% " fxFlex.sm="33% " *ngFor="let item of currentItemsToShow, let i=index; ">
         <mat-card>
             <mat-card-header>
                 <mat-card-title>{{item.camera.full_name}}</mat-card-title>
